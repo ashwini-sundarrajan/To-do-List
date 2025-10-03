@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <!--Menu bar-->
+    <div class="menubar" onclick="togglemenu()">
+        &#9776;
+    </div>
+
+    <div class="header">
+        <p><i class="fa-solid fa-gear" style="color: #45291b; margin-right: 10px; font-size: 25px;"></i>Settings</p>
+    </div>
+
+    <!--Menu bar open-->
+    <div id="menu" style="display: none;" class="menuopen">
+        <div class="deco1">
+            <a href="home.html"> <i class="fa-regular fa-alarm-clock" style="color: #45291b; margin: 5px;"></i>  Alarm</a>
+            <a href="about.html"><i class="fa-regular fa-clipboard" style="color: #45291b; margin: 5px;"></i>Todo List</a>
+            <a href="contact.html" > <i class="fa-regular fa-folder-open" style="color: #45291b; margin: 5px;"></i>Project</a> 
+            <a href="contact.html"> <i class="fa-regular fa-calendar" style="color: #45291b; margin: 5px;"></i>Monthly Planner</a> 
+            <a href="contact.html"> <i class="fa-regular fa-heart" style="color: #45291b; margin: 5px;"></i>Digital wellbeing</a> 
+            <hr style="color: #45291b; margin: 8px;">
+            <a href="settings.html"><i class="fa-solid fa-gear" style="color: #45291b; margin: 5px;"></i> Settings</a>
+        </div>
+    </div>
+
+    <!--account-->
+    <div class="account">
+        <p>Account</p>
+        <p style="font-size: 15px; margin-top: 10px;">Manage your account. All changes will be applied to all of your workspace</p>
+        <p style="font-size: 20px; margin: 30px 0;">PROFILE PHOTO</p>
+        <div class="profile-container">
+    <!-- The image itself is the upload button -->
+    <label for="fileInput">
+      <img src="download.jpeg" alt="Profile" class="profile-pic" id="profileImage">
+    </label>
+    <input type="file" id="fileInput" accept="image/*">
+  </div>
+    </div>
+
+    <script src="script.js">
+    </script>
+</body>
+</html>

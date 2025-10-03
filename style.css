@@ -312,6 +312,10 @@ button:hover {
     border-radius: 10px;
 }
 
+.playlist-box input:focus {
+    outline: none;
+}
+
 .playlist-box button {
     position: absolute;
     top: 50%;
