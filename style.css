@@ -57,6 +57,7 @@ button {
     color: #45291B;
     background-color: #EAB8B7;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 .account a {
@@ -115,7 +116,7 @@ button:hover {
 
 #schename {
     position: absolute;
-    right: 45%;
+    right: 35%;
     font-size: 30px;
     top: 7%;
 }
@@ -294,4 +295,52 @@ button:hover {
   background-color:#c99e9d;  /* change background on click */
   font-weight: bold;
   border-radius: 20px;
+}
+
+.playlist-box {
+
+}
+
+.playlist-box input {
+    padding: 10px;
+    background-color: #F5F2E9;
+    border: none;
+    position: absolute;
+    top: 43%;
+    left: 32%;
+    width: 35.5%;
+    border-radius: 10px;
+}
+
+.playlist-box button {
+    position: absolute;
+    top: 50%;
+    left: 58.5%;
+    border-radius: 10px;
+}
+
+#playlist {
+    width: 35.5%;
+    position: absolute;
+    top: 60%;
+    left: 32%;
+}
+
+.dropdown {
+    position: absolute;
+    top: 5%;
+}
+
+.dropdown button {
+    background-color: #F5F2E9;
+    color: #45291B;
+}
+
+.dropdown button:hover {
+    background-color: #d1c5a0;
+    cursor: pointer;
+}
+
+.menu-btn {
+    cursor: pointer;
 }

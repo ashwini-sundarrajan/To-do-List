@@ -116,3 +116,59 @@ function generateCalender()
 }
 
 generateCalender();
+
+function addToPlaylist() {
+  const input = document.getElementById("songInput");
+  const url = input.value.trim();
+  let embedURL = "";
+
+  if (url.includes("spotify.com/playlist")) {
+    const id = url.split("/playlist/")[1].split("?")[0];  
+    embedURL = `https://open.spotify.com/embed/playlist/${id}?utm_source=generator`;  
+  } else {
+    alert("Please paste a valid Spotify playlist link.");
+    return;
+  }
+
+  // Container for iframe + menu
+  const playlistContainer = document.createElement("div");
+  playlistContainer.classList.add("playlist-container");
+
+  // Three-dot menu
+  const menuBtn = document.createElement("div");
+  menuBtn.classList.add("menu-btn");
+  menuBtn.innerHTML = "⋮";
+
+  // Dropdown menu
+  const dropdown = document.createElement("div");
+  dropdown.classList.add("dropdown");
+  dropdown.innerHTML = `<button class="delete-btn">Delete</button>`;
+  dropdown.style.display = "none";
+
+  menuBtn.addEventListener("click", () => {
+    dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+  });
+
+  // Delete button action
+  dropdown.querySelector(".delete-btn").addEventListener("click", () => {
+    playlistContainer.remove();
+  });
+
+  // Create iframe
+  const iframe = document.createElement("iframe");
+  iframe.src = embedURL;
+  iframe.width = "100%";
+  iframe.height = "380";
+  iframe.frameBorder = "0";
+  iframe.allowfullscreen = true;
+  iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture";
+
+  
+
+  playlistContainer.appendChild(menuBtn);
+  playlistContainer.appendChild(dropdown);
+  playlistContainer.appendChild(iframe);
+
+  document.getElementById("playlist").appendChild(playlistContainer);
+  input.value = "";
+}
