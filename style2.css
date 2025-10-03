@@ -1,0 +1,85 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body, input, button, p, div {
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.menubar {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    color: #45291b;
+    z-index: 2;
+    cursor: pointer;
+    display: inline;
+}
+
+.menuopen{
+    background-color: #F5F2E9;
+    position: absolute;
+    height: 100%;
+    z-index: 1;
+    border-radius: 10px;
+    
+}
+
+.deco1 { margin-top: 150px;
+    margin-left: 20px;
+    margin-right: 150px;
+
+}
+
+.deco1 a {
+    display: block;
+    padding: 10px;
+    font-size: 20px;
+    color: #45291B;
+    text-decoration: none;
+}
+
+.header {
+    position: absolute;
+    top: 4%;
+    left: 5%;
+    font-size: 30px;
+    color: #45291B;
+    font-weight: bold;
+}
+
+.account {
+    position: absolute;
+    top: 15%;
+    left: 3%;
+    font-size: 25px;
+    color: #45291B;
+}
+
+
+.profile-container {
+      width: 150px;
+      height: 150px;
+      cursor: pointer;
+    }
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;   /* Circle */
+    object-fit: cover;    /* Keep aspect ratio */
+    
+    transition: 0.3s;
+    }
+
+.profile-pic:hover {
+    opacity: 0.7;  /* Slight fade when hovering */
+    }
+
+/* Hide file input */
+input[type="file"] {
+    display: none;
+    }
+ 
