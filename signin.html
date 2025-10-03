@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="signin">
+        <h3>Sign-in</h3>
+        <form onsubmit="save(event)">
+        <label for="email"></label>
+        <input type="email" name="email" placeholder="Enter your email" id="email" required> 
+        <label for="password"></label>
+        <input type="password" name="password" placeholder="Enter your password" id="password" required>
+        <button type="submit">Sign in</button>
+        <p class="account">Don't have an account. 
+            <a href="signup.html">Click here</a> to sign up
+        </p>
+    </form>
+    </div>
+    <script>
+        function save(event)
+        {
+          event.preventDefault();
+          //getting the values
+          var email = document.getElementById("email").value;
+          var password= document.getElementById("password").value;
+
+          //creating an object
+          var user = {
+            email: email,
+            password: password
+          };
+
+          //storing the values locally
+          localStorage.setItem("user", JSON.stringify(user));
+
+
+          window.location.href= "home.html";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <!--Menu bar-->
+    <div class="menubar" onclick="togglemenu()">
+        &#9776;
+    </div>
+
+    <!--Menu bar open-->
+    <div id="menu" style="display: none;" class="menuopen">
+        <div class="deco1">
+            <a href="home.html"> <i class="fa-regular fa-alarm-clock" style="color: #45291b; margin: 5px;"></i>  Alarm</a>
+            <a href="about.html"><i class="fa-regular fa-clipboard" style="color: #45291b; margin: 5px;"></i>Todo List</a>
+            <a href="contact.html" > <i class="fa-regular fa-folder-open" style="color: #45291b; margin: 5px;"></i>Project</a> 
+            <a href="contact.html"> <i class="fa-regular fa-calendar" style="color: #45291b; margin: 5px;"></i>Monthly Planner</a> 
+            <a href="contact.html"> <i class="fa-regular fa-heart" style="color: #45291b; margin: 5px;"></i>Digital wellbeing</a> 
+            <hr style="color: #45291b; margin: 8px;">
+            <a href="#"><i class="fa-solid fa-gear" style="color: #45291b; margin: 5px;"></i> Settings</a>
+        </div>
+    </div>
+
+    <!--Notification bell icon-->
+    <div class="notification">
+        <i class="fa-regular fa-bell fa-xl"></i>
+    </div>
+
+    <!--Welcome-->
+    <div class="namebox">
+        <p id="nameprint"></p>
+        <p style="font-size: 15px; margin-top: 5px;">Let's finish your task today 👀</p>
+    </div>
+
+    <!--Today task bar-->
+    <div class="todaytask">
+        <p style="font-size: 20px;">Today's task</p>
+        <p style="font-size: 13px; margin-top: 3px ;">Check your daily tasks and schedules!</p>
+        <button style="margin-left: 0">Today's Task</button>
+    </div>
+
+    <!--date and month in task bar-->
+    <div class="date-box">
+        <p id="date" class="date"></p>
+        <p id="month" class="month"></p>
+    </div>
+
+    <!--Mood board-->
+    <div class="mood-tracker">
+        <p>Today's Mood</p>
+        <div class="emoji-buttons">
+            <button onclick="saveMood('😊')">😊</button>
+            <button onclick="saveMood('😜')">😜</button>
+            <button onclick="saveMood('😕')">😕</button>
+            <button onclick="saveMood('😁')">😁</button>
+            <button onclick="saveMood('😭')">😭</button>
+            <button onclick="saveMood('😡')">😡</button>
+        </div>
+    </div>
+
+    <!--Daily rituals-->
+    <div class="todo-box">
+        <p style="font-size: 20px; margin-bottom: 20px;">Today's task</p>
+        <div id="checkboxContainer"></div>
+    </div>
+
+    
+
+    <!--Today' schedule-->
+    <div class="schedule">
+        <p id="schename"></p>
+        <div class="whitebox"></div>
+        <div class="calender-box">
+            <div id="month-name" class="month-name" style="font-size: 25px; margin-bottom: 30px; text-transform: uppercase;"></div>
+            <div id="dates-row" class="dates-row"></div>
+        </div>
+    </div>
+    
+<script>
+    var user = JSON.parse(localStorage.getItem("user"));
+    if(user)
+    {
+        document.getElementById("nameprint").innerText= "Hi, "+user.name+",";
+        document.getElementById("schename").innerText= ""+user.name;
+    }
+    function togglemenu()
+    {
+        var menu= document.getElementById("menu")
+        if(menu.style.display=== "none" || menu.style.display==="")
+        {
+            menu.style.display="block";
+        }
+        else
+        {
+            menu.style.display= "none";
+        }
+    }
+
+    var today= new Date()
+    document.getElementById("date").innerText=today.getDate();
+    var monthNames= ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    document.getElementById("month").innerText= monthNames[today.getMonth()];
+
+    function saveMood(emoji)
+    {
+        let moods= JSON.parse(localStorage.getItem("moods"))||[];
+        moods.push(emoji);
+        localStorage.setItem("moods", JSON.stringyfy(moods));
+    }
+
+    const container = document.getElementById("checkboxContainer");
+
+// function to add a task row
+function addCheckbox(placeholder = "Add task") {
+  const div = document.createElement("div");
+  div.className = "checkbox-item";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.className = "task-text";
+  input.placeholder = placeholder;
+
+  // strike out if checked
+  checkbox.addEventListener("change", () => {
+    if (checkbox.checked) {
+      div.classList.add("done");
+    } else {
+      div.classList.remove("done");
+    }
+  });
+
+  // add new task if Enter is pressed inside input
+  input.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      addCheckbox();
+      e.preventDefault(); // prevent newline
+    }
+  });
+
+  div.appendChild(checkbox);
+  div.appendChild(input);
+  container.appendChild(div);
+
+  input.focus(); // focus new task
+}
+
+// add one default task bar on load
+addCheckbox();
+
+
+var dayNames= ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+function generateCalender()
+{
+  var today= new Date();
+  var month= today.getMonth();
+  var year= today.getFullYear();
+  document.getElementById("month-name").innerText= monthNames[month];
+
+  var datesrow= document.getElementById("dates-row");
+  datesrow.innerHTML="";
+
+  var daysInMonth= new Date(year, month+1,0).getDate();
+
+  for(let day=1; day<= daysInMonth; day++)
+  {
+    var date= new Date(year, month, day);
+    var dayName= dayNames[date.getDay()];
+
+    var dateItem= document.createElement("div");
+    dateItem.classList.add("date-item");
+
+    dateItem.innerHTML= `
+    <div class= "day-num"> ${day} </div>
+    <div class= "dot">•</div>
+    <div class="day-name"> ${dayName} </div>`;
+
+    if (day === today.getDate()) {
+      dateItem.classList.add("today");
+    }
+
+    // Make dates clickable
+    dateItem.addEventListener("click", () => {
+      document.querySelectorAll(".date-item").forEach(el => el.classList.remove("selected"));
+      dateItem.classList.add("selected");
+      dateItem.style.backgroundColor= "#EAB8B7";
+    });
+
+
+    datesrow.appendChild(dateItem);
+  }
+}
+
+generateCalender();
+</script>
+</body>
+
+
+</html>
