@@ -273,7 +273,7 @@ button:hover {
     display: flex;
     gap: 20px;    
     overflow-x: auto;
-    padding: 0;
+    padding-bottom: 10px;
     cursor: pointer;
     color: #45291B;
 }
